@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>Kuroe</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hiiii!<br>Verification dulu yaaaa</h1>
+        <div class="verification">
+            <h3>Anime Favorit aku?</h3>
+            <div class="field">
+                <input type="text" name="" id="input">
+                <button onclick="verify()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-screen" style="display: none;">
+        <h2>Oh hiii cantikk!! 😆🙌🏻</h2>
+        <h2>Ternyata kamuu Nadiaa</h2>
+    </div>
+
+    <div class="third-screen" style="display: none;">
+        <h2>Kamuu diundang buat masuk <br> ke grup chat nihh 👀</h2>
+        <div class="card">
+            <img src="img/390e760b281e65644e26b4fe7611ee7f.jpg" alt="">
+            <h2>Together Again, Tomorrow</h2>
+            <p>최수빈, Kai, 최범규, 최연준, 강태현</p>
+            <div class="card-button">
+                <button onclick="alert('yakin dek?')">Engga</button>
+                <button onclick="showfourthscreen()">Join!</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fourth-screen" style="display: none;">
+        <div class="chat-section">
+            <div class="chat-header">
+                <img src="img/390e760b281e65644e26b4fe7611ee7f.jpg" alt="Group Avatar">
+                <div class="chat-title">
+                    <h3>Together Again, Tomorrow</h3>
+                    <p>최수빈, Kai, 최범규, 최연준, 강태현, You</p>
+                </div>
+                <div class="menu-icon">⋮</div>
+            </div>
+            
+            <div class="chat-body">
+                <div class="info-text">You were added to this group.</div>
+                <div class="chat-bubble">
+                    <img src="img/kai.png">
+                    <div class="chat">
+                        <p>Kai</p>
+                        <div class="bubble">Eh udah masuk nih nadia nya</div>
+                    </div>
+                </div>
+                <div class="chat-bubble">
+                    <img src="img/yeonjun.png">
+                    <div class="chat">
+                        <p>최연준</p>
+                        <div class="bubble">kiw kiw cantik</div>
+                    </div>
+                </div>
+                <div class="chat-bubble">
+                    <img src="img/soobin.png">
+                    <div class="chat">
+                        <p>최수빈</p>
+                        <div class="bubble">halo nadiaa! selamat ulang taunn yaa sayangg 🤍🤍</div>
+                    </div>
+                </div>
+
+                <div class="chat-bubble">
+                    <img src="img/kai.png">
+                    <div class="chat">
+                        <p>Kai</p>
+                        <div class="bubble">Ganti dulu ga ajg profilnya</div>
+                    </div>
+                    
+                </div>
+                <div class="chat-bubble">
+                    <img src="img/beomgyu.png">
+                    <div class="chat">
+                        <p>최범규</p>
+                        <div class="bubble">나디아, 생일 축하해! 🐻💛</div>
+                    </div>
+                </div>
+                <div class="chat-bubble">
+                    <img src="img/kai.png">
+                    <div class="chat">
+                        <p>Kai</p>
+                        <div class="bubble">Btw Happy bornday my princess!! 💘💐</div>
+                    </div>
+                    
+                </div>
+                <div class="chat-bubble">
+                    <img src="img/yeonjun.png">
+                    <div class="chat">
+                        <p>최연준</p>
+                        <div class="bubble">YOWWW MET ULTAH CANTIKKUUU 💁🏻‍♀️</div>
+                    </div>
+                </div>
+
+                <div class="chat-bubble">
+                    <img src="img/taehyun.png">
+                    <div class="chat">
+                        <p>강태현</p>
+                        <div class="bubble">
+                            誕生日おめでとう 🎂 On this special day, U’re more than just my lovely u’re my best friend, my safe place, and my favorite person in the world. Every moment with u is a memory I treasure, and ur smile is the brightest part of my every day. U deserve all the love, joy, and blessings in the world not just today, but always.
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="chat-bubble">
+                    <img src="img/soobin.png">
+                    <div class="chat">
+                        <p>최수빈</p>
+                        <div class="bubble">Panjang amat</div>
+                    </div>
+                </div>
+                <div class="chat-bubble">
+                    <img src="img/kai.png">
+                    <div class="chat">
+                        <p>Kai</p>
+                        <div class="bubble">tunggu dulu, kita bikinin video niehhh</div>
+                    </div>
+                </div>
+                <div class="chat-bubble video-message">
+                    <img src="img/beomgyu.png">
+                    <div class="chat">
+                        <p>최수빈</p>
+                        <div class="video-container">
+                            <video controls class="chat-video">
+                                <source src="video/happybirthday.mp4" type="video/mp4">
+                                Your browser doesn't support videos.
+                            </video>
+                            <div class="bubble">Happy Birthday! 🎂</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="next-button">
+            <button onclick="showfifthscreen()">Next &gt;</button>
+        </div>
+    </div>
+
+    <div class="fifth-screen" style="display: none;">
+    
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
