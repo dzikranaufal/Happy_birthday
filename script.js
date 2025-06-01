@@ -43,6 +43,15 @@ function showfourthscreen() {
     setTimeout(animateChatBubbles, 300);
 }
 
+function showfifthscreen() {
+    const next = document.querySelector(".fourth-screen");
+    const fifth = document.querySelector(".fifth-screen");
+
+    next.style.display = "none";
+    fifth.style.display = "block";
+    fifth.classList.add("fade-up");
+}
+
 function animateChatBubbles() {
     const infoText = document.querySelector('.info-text');
     const chatBubbles = document.querySelectorAll('.chat-bubble');

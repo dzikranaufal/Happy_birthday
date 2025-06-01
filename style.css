@@ -232,14 +232,6 @@ body {
     font-family: 'poppins', sans-serif;
 }
 
-.fifth-screen {
-    background-color: #bdd2f5;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: "Nanum Gothic", sans-serif;
-    justify-content: space-between;
-}
 
 .empty-state {
     text-align: center;
@@ -253,7 +245,7 @@ body {
 
 .video-message {
     animation: slideFadeIn 0.8s ease-out forwards;
-    animation-delay: 1s; /* Appears after 1 second */
+    animation-delay: 1s; 
 }
 
 .video-container {
