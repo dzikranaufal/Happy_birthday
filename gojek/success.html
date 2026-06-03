@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
+
+<title>Success Order</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    @font-face {
+        font-family: 'Maison Neue';
+        src: url('./fonts/fornts.com-Maison_Neue_Light.ttf') format('truetype');
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: 'Maison Neue';
+        src: url('./fonts/fornts.com-Maison_Neue_Book.ttf') format('truetype');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Maison Neue';
+        src: url('./fonts/fornts.com-Maison_Neue_Bold.ttf') format('truetype');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'Maison Neue Extended';
+        src: url('./fonts/MaisonNeue-ExtendedBook.ttf') format('truetype');
+    }   
+
+    @font-face {
+        font-family: 'Maison Neue Extended';
+        src: url('./fonts/MaisonNeue-ExtendedBold.ttf') format('truetype');
+        font-weight: 700;
+    }   
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        -webkit-tap-highlight-color:transparent;
+    }
+
+    html,
+    body{
+        background:#ECECEC;
+        font-family: 'Maison Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        min-height:100%;
+    }
+
+    .app{
+        width:100%;
+        max-width:390px;
+        min-height:100dvh;
+
+        margin:0 auto;
+
+        background:#F3F3F3;
+
+        position:relative;
+
+        overflow:hidden;
+
+        display:flex;
+        flex-direction:column;
+    }
+
+    /* =========================
+       TOP AREA
+    ========================== */
+
+    .top{
+        padding:26px 18px 0;
+    }
+
+    .back-btn{
+        width:36px;
+        height:36px;
+
+        border:none;
+        border-radius:50%;
+
+        background:#FFFFFF;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        font-size:20px;
+
+        cursor:pointer;
+    }
+
+    .header-row{
+        margin-top:34px;
+
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    .title{
+        font-size:28px;
+        font-weight:700;
+        font-family: 'Maison Neue Extended';
+        color: #00A312;
+    }
+
+    .date{
+        font-size:14px;
+        color:#555555;
+        font-weight:600;
+    }
+
+    /* =========================
+       DRIVER
+    ========================== */
+
+    .driver-card{
+        margin-top:20px;
+
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    .driver-left{
+        display:flex;
+        align-items:center;
+        gap:14px;
+    }
+
+    .driver-photo{
+        width:48px;
+        height:48px;
+
+        border-radius:50%;
+
+        overflow:hidden;
+
+        background:#D9D9D9;
+    }
+
+    .driver-photo img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
+
+    .driver-text{
+        margin-top: 6px;
+    }
+
+    .driver-name{
+        font-size:18px;
+        font-weight:800;
+        color:#111111;
+    }
+
+    .driver-vehicle{
+        margin-top:2px;
+
+        font-size:16px;
+        color:#666666;
+    }
+
+    .driver-chat{
+        width:52px;
+        height:52px;
+
+        border-radius:50%;
+
+        background:#D9D9D9;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        font-size:20px;
+        color:#666666;
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    .section-title{
+        margin-top:48px;
+
+        font-size:18px;
+        font-weight:800;
+        color:#111111;
+    }
+
+    /* =========================
+       ROUTE BOX
+    ========================== */
+
+    .route-box{
+        margin-top:18px;
+
+        background:#FFFFFF;
+
+        border:2px solid #D9D9D9;
+
+        border-radius:18px;
+
+        display:grid;
+        grid-template-columns:1fr 1fr;
+
+        overflow:hidden;
+    }
+
+    .route-side{
+        padding:22px 18px;
+
+        position:relative;
+
+        display:flex;
+        align-items:center;
+        gap:12px;
+    }
+
+    .side-left{
+        justify-content: left;
+    }
+
+    .side-right{
+        justify-content: right;
+    }
+
+    .route-side:first-child{
+        border-right:2px dashed #D9D9D9;
+    }
+
+    .route-icon{
+        width:24px;
+        height:24px;
+
+        border-radius:50%;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        color:#FFFFFF;
+
+        font-size:14px;
+
+        flex-shrink:0;
+    }
+    .route-right-text{
+        text-align: right;
+    }
+    .pickup{
+        background:#00B014;
+    }
+
+    .destination{
+        background:#FF9500;
+        font-size: 10px;
+    }
+
+    .route-label{
+        font-size:13px;
+        color:#7A7A7A;
+    }
+
+    .route-place{
+        margin-top:2px;
+
+        font-size:15px;
+        font-weight:800;
+        color:#111111;
+    }
+
+    /* =========================
+       PRICE
+    ========================== */
+
+    .price-section{
+        margin-top:36px;
+    }
+
+    .price-row{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+
+        margin-bottom:24px;
+    }
+
+    .price-left{
+        font-size:18px;
+        font-weight:800;
+        color:#111111;
+    }
+
+    .price-sub{
+        margin-top:2px;
+
+        font-size:13px;
+        color:#666666;
+    }
+
+    .price-right{
+        text-align:right;
+    }
+
+    .price-current{
+        font-size:18px;
+        color:#111111;
+    }
+
+    .price-old{
+        margin-top:2px;
+
+        font-size:14px;
+        color:#B3B3B3;
+
+        text-decoration:line-through;
+    }
+
+    .free-badge{
+        display:inline-block;
+
+        margin-left:6px;
+
+        padding:2px 6px;
+
+        border-radius:6px;
+
+        background:#FF3B30;
+
+        color:#FFFFFF;
+        font-size:10px;
+        font-weight:700;
+    }
+
+    /* =========================
+       NOTE BOX
+    ========================== */
+
+    .note-box{
+        margin-top:28px;
+
+        height:100%;
+
+        border-radius:16px;
+
+        background:#D9D9D9;
+
+        padding:14px;
+
+        display: flex;
+        gap:10px;
+    }
+
+    .note-box span{
+        color: #555555;
+        font-size: 13px;
+        text-align: justify;
+    }
+
+    /* =========================
+       BOTTOM
+    ========================== */
+
+    .bottom{
+        margin-top:16px;
+
+        background:#FFFFFF;
+
+        border-top:2px solid #D9D9D9;
+
+        padding:24px 18px calc(28px + env(safe-area-inset-bottom));
+    }
+
+    .total-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    .total-label{
+        font-size:18px;
+        font-weight:700;
+    }
+
+    .total-price{
+        font-size:20px;
+        font-weight:700;
+        font-family: 'Maison Neue Extended';
+        color:#00A312;
+    }
+
+    .chat-btn{
+        width:100%;
+        height:62px;
+
+        margin-top:24px;
+
+        border:none;
+        border-radius:16px;
+
+        background:#00B014;
+
+        color:#FFFFFF;
+
+        font-size:20px;
+        font-weight: 600;
+
+        cursor:pointer;
+    }
+
+    .chat-btn:active{
+        transform:scale(0.98);
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- TOP -->
+    <div class="top">
+
+        <button class="back-btn" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-row">
+
+            <div class="title">
+                goride
+            </div>
+
+            <div class="date" id="orderDate">
+                Jumat, 5 Juni 00.00
+            </div>
+
+        </div>
+
+        <!-- DRIVER -->
+        <div class="driver-card">
+
+            <div class="driver-left">
+
+                <div class="driver-photo">
+                    <img src="assets/gw.png" alt="">
+                </div>
+
+                <div class="driver-text">
+
+                    <div class="driver-name">
+                        DZIKRA NAUFAL
+                    </div>
+
+                    <div class="driver-vehicle">
+                        Motor - D 21 KRA
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="driver-chat">
+                <i class="fa-solid fa-motorcycle"></i>
+            </div>
+
+        </div>
+
+        <!-- DETAIL -->
+        <div class="section-title">
+            Detail Perjalanan
+        </div>
+
+        <!-- ROUTE -->
+        <div class="route-box">
+
+            <div class="route-side side-left">
+
+                <div class="route-icon pickup">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </div>
+
+                <div>
+
+                    <div class="route-label">
+                        Lokasi jemput
+                    </div>
+
+                    <div class="route-place">
+                        Lokasi Anda
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="route-side side-right">
+
+                <div class="route-right-text">
+                    <div class="route-label">
+                        Lokasi tujuan
+                    </div>
+
+                    <div class="route-place" id="movieName">
+                        
+                    </div>
+                </div>
+
+                <div class="route-icon destination">
+                    <i class="fa-solid fa-circle"></i>
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+        <!-- PRICE -->
+        <div class="price-section">
+
+            <div class="price-row">
+
+                <div class="price-left">
+                    GoRide
+                </div>
+
+                <div class="price-right">
+
+                    <div class="price-current">
+                        Rp0
+                    </div>
+
+                    <div class="price-old">
+                        Rp22.000
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="price-row">
+
+                <div class="price-left">
+                    Admin
+                </div>
+
+                <div class="price-right">
+
+                    <div class="price-current">
+                        Rp0
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="price-row">
+
+                <div>
+
+                    <div class="price-left" >
+                        <span id="item"></span>
+                        <span class="free-badge">
+                            FREE
+                        </span>
+                    </div>
+
+                    <div class="price-sub">
+                        Birthday Treatment
+                    </div>
+
+                </div>
+
+                <div class="price-right">
+
+                    <div class="price-current">
+                        Rp0
+                    </div>
+
+                    <div class="price-old" id="price-item">
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- NOTE -->
+        <div class="note-box">
+            <i class="bi bi-info-circle"></i>
+            <span>Chat Driver untuk penentuan jadwal tayang dan nama film. Kupon ini hanya berlaku 1x penentuan dan pengguna yang berulang tahun. Selamat ulang tahun cantik!</span>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+
+        <div class="total-row">
+
+            <div class="total-label">
+                Total
+            </div>
+
+            <div class="total-price">
+                Rp 0
+            </div>
+
+        </div>
+
+        <button class="chat-btn" id="chatBtn">
+            Chat Driver!
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+    /*
+    =====================================
+    DESTINATION DATA
+    =====================================
+    */
+
+    const destinationType =
+        localStorage.getItem("destinationType") || "Bioskop";
+
+    document.getElementById("movieName").textContent =
+        destinationType;
+
+    let message = "";
+
+    /*
+    =====================================
+    ITEM & WHATSAPP TEMPLATE
+    =====================================
+    */
+
+    if(destinationType === "Bioskop"){
+
+        document.getElementById("item").textContent =
+            "1 Ticket Movie";
+
+        document.getElementById("price-item").textContent =
+            "Rp50.000";
+
+        message =
+            `Halo driver 👋
+
+            Saya sudah order GoRide.
+
+            Film: (isi nama film)
+            Bioskop: (isi nama bioskop)
+            Hari, Tanggal: (isi jadwal)
+            Jam: (isi jam tayang)
+
+            Terima kasih 🙌`;
+
+    }
+
+    else if(destinationType === "Cafe"){
+
+        document.getElementById("item").textContent =
+            "1 Voucher Lunch";
+
+        document.getElementById("price-item").textContent =
+            "Rp35.000";
+
+        message =
+            `Halo driver 👋
+            Saya sudah order GoRide.
+
+            Cafe: TerraCafe / Peach of Cake
+            Hari, Tanggal: (isi jadwal)
+            Jam: (isi jam)
+            
+            Terima kasih 🙌`;
+    }
+
+    /*
+    =====================================
+    ORDER DATE
+    =====================================
+    */
+
+    const now = new Date();
+
+    const formattedDate =
+        now.toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "long"
+        });
+
+    const orderTime =
+        now.toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+    document.getElementById("orderDate").textContent =
+        `${formattedDate} ${orderTime}`;
+
+    /*
+    =====================================
+    CHAT DRIVER
+    =====================================
+    */
+
+    document
+        .getElementById("chatBtn")
+        .addEventListener("click", () => {
+
+            const encodedMessage =
+                encodeURIComponent(message);
+
+            window.location.href =
+                `https://wa.me/6281222677093?text=${encodedMessage}`;
+
+        });
+
+</script>
+
+</body>
+</html>

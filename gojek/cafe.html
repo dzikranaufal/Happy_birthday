@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
+
+<title>Location</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<style>
+
+@font-face {
+    font-family: 'Maison Neue';
+    src: url('./fonts/fornts.com-Maison_Neue_Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Maison Neue';
+    src: url('./fonts/fornts.com-Maison_Neue_Book.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Maison Neue';
+    src: url('./fonts/fornts.com-Maison_Neue_Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Maison Neue Extended';
+    src: url('./fonts/MaisonNeue-ExtendedBook.ttf') format('truetype');
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+    background:#EDEDED;
+    font-family: 'Maison Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+}
+
+.app{
+    position:relative;
+
+    width:100%;
+    max-width:390px;
+    height:100dvh;
+
+    overflow:hidden;
+
+    background:#F5F5F5;
+}
+
+/* ================= EMPTY MAP ================= */
+
+.map-area{
+    position:absolute;
+    inset:0;
+
+    background:#ECECEC;
+}
+
+.map-area::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:.45;
+}
+
+/* ================= TOP CARD ================= */
+
+.top-section{
+    position:absolute;
+
+    top:max(14px, env(safe-area-inset-top));
+    left:16px;
+    right:16px;
+
+    z-index:20;
+}
+
+.route-card{
+    background:#FFFFFF;
+
+    border-radius:24px;
+
+    padding:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.10);
+}
+
+.route-left{
+    flex:1;
+}
+
+.route-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.route-item i{
+    font-size:18px;
+}
+
+.route-item.start i{
+    color:#00AA13;
+}
+
+.route-item.end i{
+    color:#F57C00;
+}
+
+.route-text{
+    flex:1;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+    font-size:14px;
+    font-weight:700;
+
+    color:#2A2A2A;
+}
+
+.route-divider{
+    height:1px;
+
+    background:#E8E8E8;
+
+    margin:10px 0 10px 30px;
+}
+
+.add-btn{
+    min-width:112px;
+    height:48px;
+
+    border-radius:999px;
+
+    border:2px solid #ECECEC;
+
+    background:#FFFFFF;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:700;
+
+    color:#444;
+}
+
+.add-btn i{
+    color:#F57C00;
+    font-size:20px;
+}
+
+/* ================= BACK BTN ================= */
+
+.back-btn{
+    position:absolute;
+
+    left:16px;
+    top:310px;
+
+    width:54px;
+    height:54px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#FFFFFF;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+
+    z-index:20;
+
+    font-size:24px;
+
+    color:#111;
+
+    cursor:pointer;
+}
+
+/* ================= BUSINESS BADGE ================= */
+
+.business-badge{
+    position:absolute;
+
+    left:50%;
+    top:390px;
+
+    transform:translateX(-50%);
+
+    background:#FFFFFF;
+
+    border:2px solid #00AA13;
+
+    color:#00AA13;
+
+    height:54px;
+
+    border-radius:999px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    padding:0 22px;
+
+    z-index:20;
+
+    font-size:15px;
+    font-weight:700;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+
+/* ================= SHEET ================= */
+
+.bottom-sheet{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:54%;
+
+    background:#FFFFFF;
+
+    border-radius:30px 30px 0 0;
+
+    z-index:50;
+
+    transition:height .35s ease;
+
+    overflow:hidden;
+
+    box-shadow:0 -10px 28px rgba(0,0,0,.10);
+}
+
+.bottom-sheet.expanded{
+    height:82%;
+}
+
+.sheet-handle-wrap{
+    width:100%;
+
+    padding-top:10px;
+    padding-bottom:8px;
+
+    display:flex;
+    justify-content:center;
+
+    cursor:pointer;
+}
+
+.sheet-handle{
+    width:46px;
+    height:5px;
+
+    border-radius:999px;
+
+    background:#CFCFCF;
+}
+
+/* ================= TABS ================= */
+
+.tabs{
+    display:flex;
+    justify-content:center;
+
+    gap:44px;
+
+    border-bottom:1px solid #EFEFEF;
+}
+
+.tab{
+    position:relative;
+
+    padding:12px 0 14px;
+
+    font-size:16px;
+    font-weight:700;
+
+    color:#9B9B9B;
+
+    cursor:pointer;
+}
+
+.tab.active{
+    color:#00AA13;
+}
+
+.tab.active::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:4px;
+
+    border-radius:999px;
+
+    background:#00AA13;
+}
+
+/* ================= RIDE LIST ================= */
+
+.ride-list{
+    height:calc(100% - 170px);
+
+    overflow-y:auto;
+}
+
+.ride-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:18px 18px;
+
+    border-bottom:1px solid #F0F0F0;
+
+    transition:.2s ease;
+
+    cursor:pointer;
+}
+
+.ride-item.active{
+    background:#DDF5D8;
+}
+
+.ride-left{
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+}
+
+.ride-img{
+    width:54px;
+    height:54px;
+    border-radius:14px;
+    overflow: hidden;
+    
+}
+
+.ride-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ride-title{
+    font-size:16px;
+    font-weight:700;
+
+    color:#111;
+}
+
+.ride-sub{
+    margin-top:4px;
+
+    font-size:13px;
+    line-height:1.4;
+
+    color:#666;
+}
+
+.ride-price{
+    text-align:right;
+}
+
+.price-main{
+    font-size:16px;
+    font-weight:700;
+
+    color:#111;
+}
+
+.price-old{
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:#8C8C8C;
+
+    text-decoration:line-through;
+}
+
+/* ================= QUICK OPTION ================= */
+
+.quick-option{
+    height:70px;
+
+    border-top:1px solid #EFEFEF;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 18px;
+}
+
+.quick-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.quick-left i{
+    color:#00AA13;
+    font-size:22px;
+}
+
+.quick-title{
+    font-size:15px;
+    font-weight:500;
+
+    color:#444;
+}
+
+.quick-price{
+    font-weight:700;
+    color:#111;
+}
+
+.toggle{
+    width:54px;
+    height:32px;
+
+    background:#E6E6E6;
+
+    border-radius:999px;
+
+    position:relative;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.toggle::before{
+    content:"";
+
+    position:absolute;
+
+    top:3px;
+    left:3px;
+
+    width:26px;
+    height:26px;
+
+    border-radius:50%;
+
+    background:#FFFFFF;
+
+    transition:.25s;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.toggle.active{
+    background:#00AA13;
+}
+
+.toggle.active::before{
+    left:25px;
+}
+
+/* ================= FOOTER ================= */
+
+.bottom-footer{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:#FFFFFF;
+
+    border-top:1px solid #ECECEC;
+
+    padding:14px 16px calc(18px + env(safe-area-inset-bottom));
+
+    z-index:80;
+}
+
+.action-row{
+    display:flex;
+    gap:12px;
+}
+
+.instant-btn{
+    width:120px;
+    height:56px;
+
+    border-radius:999px;
+
+    border:2px solid #00AA13;
+
+    background:#FFFFFF;
+
+    color:#00AA13;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.driver-btn{
+    flex:1;
+    height:56px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#00AA13;
+
+    color:#FFFFFF;
+
+    font-size:17px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MAP -->
+    <div class="map-area"></div>
+
+    <!-- TOP -->
+    <div class="top-section">
+
+        <div class="route-card">
+
+            <div class="route-left">
+
+                <div class="route-item start">
+                    <i class="fa-solid fa-circle-up"></i>
+
+                    <div class="route-text">
+                        Lokasi kamu
+                    </div>
+                </div>
+
+                <div class="route-divider"></div>
+
+                <div class="route-item end">
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div class="route-text route-end">
+                        Cafe
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="add-btn">
+                <i class="fa-solid fa-circle-plus"></i>
+                Tambah
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- BACK -->
+    <button class="back-btn" onclick="history.back()">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <!-- SHEET -->
+    <div class="bottom-sheet" id="sheet">
+
+        <div class="sheet-handle-wrap" id="sheetHandle">
+            <div class="sheet-handle"></div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+
+            <div class="tab active">
+                Buat kamu
+            </div>
+
+            <div class="tab">
+                Hemat
+            </div>
+
+            <div class="tab">
+                Ekstra
+            </div>
+
+        </div>
+
+        <!-- LIST -->
+        <div class="ride-list">
+
+            <div class="ride-item active">
+
+                <div class="ride-left">
+
+                    <div class="ride-img">
+                        <img src="assets/ride.png" alt="" >
+                    </div>
+                        
+                    <div>
+
+                        <div class="ride-title">
+                            GoRide
+                        </div>
+
+                        <div class="ride-sub">
+                            2-4 menit • 1<br>
+                            Free for My Princess 👸🏻
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="ride-price">
+
+                    <div class="price-main">
+                        Rp0
+                    </div>
+
+                    <div class="price-old">
+                        Rp22.500
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="ride-item">
+
+                <div class="ride-left">
+
+                    <div class="ride-img">
+                        <img src="assets/ride.png" alt="">
+                    </div>
+
+                    <div>
+
+                        <div class="ride-title">
+                            GoRide Comfort
+                        </div>
+
+                        <div class="ride-sub">
+                            4-9 menit • 1<br>
+                            yakin lu? atas aja jir
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="ride-price">
+
+                    <div class="price-main">
+                        Rp20.500.000
+                    </div>
+
+                    <div class="price-old">
+                        Rp24.500.000
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!-- QUICK -->
+        <div class="quick-option">
+
+            <div class="quick-left">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <div class="quick-title">
+                    Aktifkan Pencarian Cepat •
+                    <span class="quick-price">Rp3.000</span>
+                </div>
+
+            </div>
+
+            <div class="toggle" id="toggle"></div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="bottom-footer">
+
+        <div class="action-row">
+
+            
+
+            <button class="driver-btn" onclick="window.location.href='loading.html'">
+                Cari driver
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const sheet = document.getElementById('sheet');
+const handle = document.getElementById('sheetHandle');
+
+let expanded = false;
+
+handle.addEventListener('click', () => {
+    expanded = !expanded;
+
+    sheet.classList.toggle('expanded');
+});
+
+const toggle = document.getElementById('toggle');
+
+toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+});
+
+const rideItems = document.querySelectorAll('.ride-item');
+
+rideItems.forEach(item => {
+
+    item.addEventListener('click', () => {
+
+        rideItems.forEach(el => {
+            el.classList.remove('active');
+        });
+
+        item.classList.add('active');
+
+    });
+
+});
+
+const routeEnds = document.querySelectorAll('.route-end');
+
+routeEnds.forEach(el => {
+
+    const maxLength = 20;
+    const originalText = el.textContent.trim();
+
+    if(originalText.length > maxLength){
+
+        el.textContent =
+            originalText.substring(0, maxLength - 3) + "...";
+
+    }
+
+});
+
+
+</script>
+
+</body>
+</html>

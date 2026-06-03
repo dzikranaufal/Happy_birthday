@@ -1,7 +1,7 @@
 function verify() {
     const input = document.getElementById("input").value;
 
-    if (input === "conan") {
+    if (input === "daun bawang") {
         const container = document.querySelector(".container");
         const next = document.querySelector(".second-screen");
 

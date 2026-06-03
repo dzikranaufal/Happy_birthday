@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Beranda</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="header-sticky" id="headerSticky">
+            <div class="header-top">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input 
+                        type="text" 
+                        class="search-input"
+                        placeholder="Cari di sini..."
+                    />
+                </div>
+                <div class="profile-btn">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+        </div>
+        <main class="main-content" id="mainContent">
+            <div class="header-banner">
+                <img src="assets/banner.png" alt="">
+            </div>
+            <div class="floating-card">
+                <div class="floating-left">
+                    <div class="floating-profile">
+                        <img src="./assets/gopay.png" alt="">
+                    </div>
+                    
+                    <div class="floating-balance">
+                        <div class="balance-top">
+                            <h2 class="balance-amount">Rp567.000</h2>
+
+                            <button class="plus-btn">
+                                <img src="./assets/add.png" alt="">
+                            </button>
+                        </div>
+
+                        <p class="balance-coins">567 coins</p>
+                    </div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="floating-actions">
+
+                    <div class="floating-action">
+                        <img src="./assets/bayar.png" alt="" class="action-icon">
+                        <span class="action-label">Bayar</span>
+                    </div>
+
+                    <div class="floating-action">
+                        <img src="./assets/riwayat.png" alt="" class="action-icon">
+                        <span class="action-label">Riwayat</span>
+                    </div>
+
+                    <div class="floating-action">
+                        <img src="./assets/others.png" alt="" class="action-icon">
+                        <span class="action-label">Lainnya</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="menu-grid">
+                    <div class="menu-service" data-label="cuss" data-link="true">
+                        <div class="menu-icon-box">
+                            <img src="./assets/ride.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoRide</span>
+                    </div>
+
+                    <div class="menu-service" data-label="motor aja yh cantik 🤍">
+                        <div class="menu-icon-box">
+                            <img src="./assets/car.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoCar</span>
+                    </div>
+
+                    <div class="menu-service" data-label="nanti makan kok, goride ajh">
+                        <div class="menu-icon-box">
+                            <img src="./assets/food.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoFood</span>
+                    </div>
+
+                    <div class="menu-service" data-label="mo ngirim apaan lu">
+                        <div class="menu-icon-box">
+                            <img src="./assets/box.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoSend</span>
+                    </div>
+
+                    <div class="menu-service" data-label="klik yg atas aja pls">
+                        <div class="menu-icon-box">
+                            <img src="./assets/market.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoMart</span>
+                    </div>
+
+                    <div class="menu-service" data-label="udh ga jaman pulsa">
+                        <div class="menu-icon-box">
+                            <img src="./assets/card.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoPulsa</span>
+                    </div>
+
+                    <div class="menu-service" data-label="udh jan aneh², ngapain klik semuanya">
+                        <div class="menu-icon-box">
+                            <img src="./assets/health.png" alt="" class="menu-icon menu-icon-offset">
+                        </div>
+                        <span class="menu-title">GoHealth</span>
+                    </div>
+
+                    <div class="menu-item menu-more" >
+                        <div class="more-circle">
+                            <div class="more-dots">
+                                <span></span><span></span>
+                                <span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="banner-rect">
+                    <img src="assets/promo.png" alt="">
+                </div>
+
+                <div class="section-title">Wle</div>
+
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-card">
+                            <img src="assets/carousel1.jpg" alt="">
+                        </div>
+                        <div class="carousel-card">
+                            <img src="assets/carousel 2.jpg" alt="">
+                        </div>
+                        <div class="carousel-card">
+                            <img src="assets/carousel3.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 88px;"></div>
+
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-index="0">
+                <i class="fa-solid fa-house nav-icon"></i>
+                <span class="nav-label">Beranda</span>
+            </div>
+            <div class="nav-item" data-index="1">
+                <i class="fa-solid fa-tag nav-icon"></i>
+                <span class="nav-label">Promo</span>
+            </div>
+            <div class="nav-item" data-index="2">
+                <i class="fa-solid fa-clipboard-list nav-icon"></i>
+                <span class="nav-label">Aktivitas</span>
+            </div>
+            <div class="nav-item" data-index="3">
+                <i class="fa-solid fa-comment-dots nav-icon"></i>
+                <span class="nav-label">Chat</span>
+            </div>
+        </nav>
+
+    </div>
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
