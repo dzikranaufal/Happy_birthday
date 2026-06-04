@@ -53,15 +53,10 @@ function showfifthscreen() {
 }
 
 function animateChatBubbles() {
-    const infoText = document.querySelector('.info-text');
-    const chatBubbles = document.querySelectorAll('.chat-bubble');
-    if (infoText) {
-        infoText.style.opacity = '1';
-    }
-    
-    chatBubbles.forEach((bubble, index) => {
-        bubble.style.setProperty('--i', index); 
-        bubble.style.animationDelay = `${1.5 + (index * 1.6)}s`;
+    const messages = document.querySelectorAll('.chat-bubble, .info-text');
+
+    messages.forEach((message, index) => {
+        message.style.animationDelay = `${2.0 + (index * 2.0)}s`;
     });
 }
 
